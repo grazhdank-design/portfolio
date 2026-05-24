@@ -209,7 +209,7 @@ function CaseItem({ index }: { index: number }) {
 
           <Link
             href={`/cases/${c.slug}/`}
-            className={`inline-flex items-center gap-2 mt-6 text-sm font-mono text-[#3a3d52] hover:text-white transition-colors group`}
+            className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full border border-white/20 text-white/60 text-sm font-mono hover:border-indigo-500/50 hover:text-white hover:bg-indigo-500/5 transition-all duration-200 group"
           >
             <span>Read full case</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
