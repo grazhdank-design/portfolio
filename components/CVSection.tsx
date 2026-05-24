@@ -79,81 +79,82 @@ export default function CVSection() {
     <section className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ${
+        className={`max-w-6xl mx-auto transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
         style={{ willChange: "transform" }}
       >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
 
-        {/* ── Experience ── */}
-        <SectionLabel label="Experience" />
-        <div className="mb-20">
-          {experience.map((job, i) => (
-            <div key={job.company} className="border-t border-white/8 py-10">
-              <div className="flex items-start justify-between mb-2">
-                <span className="font-mono text-sm text-white/35 uppercase tracking-widest">
-                  {job.period}
-                </span>
-                <span className="font-mono text-sm text-white/10">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="font-mono text-[13px] text-white/40 uppercase tracking-widest mt-2">
-                {job.company}
-              </div>
-              <h3
-                className="font-bold text-white mt-1 mb-4 leading-tight"
-                style={{ fontSize: "clamp(20px, 2.5vw, 28px)" }}
-              >
-                {job.role}
-              </h3>
-              <p className="text-white/55 leading-relaxed" style={{ fontSize: 15 }}>
-                {job.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Skills ── */}
-        <div className="border-t border-white/5 pt-16 mb-20">
-          <SectionLabel label="Skills" />
-          <div className="grid sm:grid-cols-2 gap-10">
-            {skillGroups.map((group) => (
-              <div key={group.title}>
-                <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
-                  {group.title}
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 rounded-full border border-white/10 text-white/55 text-sm"
-                    >
-                      {skill}
+          {/* ── Col 1: Experience ── */}
+          <div>
+            <SectionLabel label="Experience" />
+            <div>
+              {experience.map((job, i) => (
+                <div key={job.company} className="border-t border-white/8 py-8">
+                  <div className="flex items-start justify-between mb-2">
+                    <span className="font-mono text-xs text-white/35 uppercase tracking-widest">
+                      {job.period}
                     </span>
-                  ))}
+                    <span className="font-mono text-xs text-white/10">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="font-mono text-[11px] text-white/40 uppercase tracking-widest mt-2">
+                    {job.company}
+                  </div>
+                  <h3 className="font-bold text-white text-base mt-1 mb-3 leading-tight">
+                    {job.role}
+                  </h3>
+                  <p className="text-white/55 leading-relaxed text-sm">
+                    {job.desc}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* ── Certifications ── */}
-        <div className="border-t border-white/5 pt-16">
-          <SectionLabel label="Certifications" />
-          <div className="grid sm:grid-cols-2 gap-4">
-            {certifications.map((cert) => (
-              <div key={cert.name} className="p-4 rounded-xl border border-white/5 bg-white/[0.02]">
-                <div className="flex items-start justify-between gap-3 mb-1">
-                  <span className="text-sm font-bold text-white leading-snug">{cert.name}</span>
-                  <span className="text-xs text-indigo-400 font-mono shrink-0">{cert.year}</span>
+          {/* ── Col 2: Skills ── */}
+          <div>
+            <SectionLabel label="Skills" />
+            <div className="space-y-8">
+              {skillGroups.map((group) => (
+                <div key={group.title}>
+                  <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
+                    {group.title}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 rounded-full border border-white/10 text-white/55 text-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="text-xs text-white/35 font-mono">{cert.issuer}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
+          {/* ── Col 3: Certifications ── */}
+          <div>
+            <SectionLabel label="Certifications" />
+            <div className="space-y-3">
+              {certifications.map((cert) => (
+                <div key={cert.name} className="p-4 rounded-xl border border-white/5 bg-white/[0.02]">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <span className="text-sm font-bold text-white leading-snug">{cert.name}</span>
+                    <span className="text-xs text-indigo-400 font-mono shrink-0">{cert.year}</span>
+                  </div>
+                  <div className="text-xs text-white/35 font-mono">{cert.issuer}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
