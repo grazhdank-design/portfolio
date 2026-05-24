@@ -111,7 +111,7 @@ export default function About() {
               I&apos;m a Head of Product with 9+ years in crypto and fintech, 5 years in executive
               roles. I&apos;ve launched 5 MVPs, scaled products to 1M+ MAU, grown revenue up to 300%
               YoY, hired 90+ people across 9 product teams, and managed 3–5 engineering teams and 4
-              products simultaneously across both companies.
+              products simultaneously across both companies, including hiring and day-to-day management of engineering, design, analytics, and marketing specialists.
             </p>
             <p>
               At{" "}

@@ -25,6 +25,13 @@ const contacts = [
     gradient: "from-emerald-500 to-green-600",
   },
   {
+    label: "GitHub",
+    handle: "grazhdank-design",
+    href: "https://github.com/grazhdank-design",
+    icon: "◉",
+    gradient: "from-gray-400 to-gray-600",
+  },
+  {
     label: "Email",
     handle: "grazhdank@gmail.com",
     href: "mailto:grazhdank@gmail.com",

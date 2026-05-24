@@ -13,44 +13,22 @@ function hexToRgba(hex: string, alpha: number): string {
 }
 
 const coins = [
-  { symbol: "₿",  name: "BTC",   color: "#f7931a", size: 90  },
-  { symbol: "Ξ",  name: "ETH",   color: "#627eea", size: 80  },
-  { symbol: "₮",  name: "USDT",  color: "#26a17b", size: 70  },
-  { symbol: "⬡",  name: "BNB",   color: "#f3ba2f", size: 100 },
-  { symbol: "◎",  name: "SOL",   color: "#9945ff", size: 85  },
-  { symbol: "✕",  name: "XRP",   color: "#346aa9", size: 75  },
-  { symbol: "$",  name: "USDC",  color: "#2775ca", size: 95  },
-  { symbol: "₳",  name: "ADA",   color: "#0033ad", size: 70  },
-  { symbol: "Ð",  name: "DOGE",  color: "#c3a634", size: 110 },
-  { symbol: "⬡",  name: "TON",   color: "#0088cc", size: 80  },
-  { symbol: "◈",  name: "TRX",   color: "#e50915", size: 75  },
-  { symbol: "▲",  name: "AVAX",  color: "#e84142", size: 90  },
-  { symbol: "●",  name: "DOT",   color: "#e6007a", size: 85  },
-  { symbol: "⬡",  name: "LINK",  color: "#2a5ada", size: 70  },
-  { symbol: "◈",  name: "MATIC", color: "#8247e5", size: 80  },
+  { symbol: "₿",  name: "BTC",   color: "#f7931a", size: 90,  top: "8%",    left: "5%",   anim: "float-a 12s ease-in-out infinite", delay: "0s"   },
+  { symbol: "Ξ",  name: "ETH",   color: "#627eea", size: 80,  top: "15%",   right: "6%",  anim: "float-b 15s ease-in-out infinite", delay: "2s"   },
+  { symbol: "₮",  name: "USDT",  color: "#26a17b", size: 70,  top: "35%",   left: "3%",   anim: "float-c 10s ease-in-out infinite", delay: "1s"   },
+  { symbol: "⬡",  name: "BNB",   color: "#f3ba2f", size: 100, top: "60%",   left: "8%",   anim: "float-d 13s ease-in-out infinite", delay: "3s"   },
+  { symbol: "◎",  name: "SOL",   color: "#9945ff", size: 85,  bottom: "12%",left: "18%",  anim: "float-e 9s ease-in-out infinite",  delay: "0.5s" },
+  { symbol: "$",  name: "USDC",  color: "#2775ca", size: 95,  bottom: "8%", right: "10%", anim: "float-f 14s ease-in-out infinite", delay: "1.5s" },
+  { symbol: "₳",  name: "ADA",   color: "#0033ad", size: 70,  top: "5%",    left: "30%",  anim: "float-a 11s ease-in-out infinite", delay: "4s"   },
+  { symbol: "Ð",  name: "DOGE",  color: "#c3a634", size: 75,  top: "10%",   right: "25%", anim: "float-b 16s ease-in-out infinite", delay: "2.5s" },
+  { symbol: "⬡",  name: "TON",   color: "#0088cc", size: 80,  top: "45%",   right: "4%",  anim: "float-c 12s ease-in-out infinite", delay: "0.8s" },
+  { symbol: "◈",  name: "TRX",   color: "#e50915", size: 75,  bottom: "20%",right: "22%", anim: "float-d 10s ease-in-out infinite", delay: "3.5s" },
+  { symbol: "▲",  name: "AVAX",  color: "#e84142", size: 90,  top: "25%",   left: "18%",  anim: "float-e 13s ease-in-out infinite", delay: "1.2s" },
+  { symbol: "●",  name: "DOT",   color: "#e6007a", size: 85,  bottom: "30%",left: "35%",  anim: "float-f 11s ease-in-out infinite", delay: "2s"   },
+  { symbol: "⬡",  name: "LINK",  color: "#2a5ada", size: 70,  top: "70%",   right: "15%", anim: "float-a 14s ease-in-out infinite", delay: "0.3s" },
+  { symbol: "◈",  name: "MATIC", color: "#8247e5", size: 80,  top: "5%",    right: "42%", anim: "float-b 12s ease-in-out infinite", delay: "4.5s" },
+  { symbol: "✕",  name: "XRP",   color: "#346aa9", size: 75,  bottom: "5%", left: "45%",  anim: "float-c 15s ease-in-out infinite", delay: "1.8s" },
 ];
-
-const coinPositions: { top?: string; bottom?: string; left?: string; right?: string }[] = [
-  { top: "8%",    left: "5%"   },
-  { top: "15%",   right: "6%"  },
-  { top: "35%",   left: "3%"   },
-  { top: "60%",   left: "8%"   },
-  { bottom: "12%",left: "18%"  },
-  { bottom: "8%", right: "10%" },
-  { top: "5%",    left: "30%"  },
-  { top: "10%",   right: "25%" },
-  { top: "45%",   right: "4%"  },
-  { bottom: "20%",right: "22%" },
-  { top: "25%",   left: "18%"  },
-  { bottom: "30%",left: "35%"  },
-  { top: "70%",   right: "15%" },
-  { top: "5%",    right: "42%" },
-  { bottom: "5%", left: "45%"  },
-];
-
-const floatAnims = ["float-a", "float-b", "float-c", "float-d", "float-e", "float-f"];
-const coinDurations = [12, 15, 10, 13, 17, 14, 11, 16, 12, 18, 10, 14, 20, 13, 11];
-const coinDelays    = [0,   2,  1,  3,  0.5, 1.5, 4, 2.5, 0.8, 3.5, 1.2, 5, 0.3, 6, 2];
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -178,14 +156,10 @@ export default function Hero() {
 
       {/* crypto coin circles */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {coins.map((coin, i) => {
-          const pos = coinPositions[i];
-          const animName = floatAnims[i % 6];
-          const dur = coinDurations[i];
-          const del = coinDelays[i];
+        {coins.map((coin) => {
           const bg = hexToRgba(coin.color, 0.07);
           const border = hexToRgba(coin.color, 0.18);
-          const symColor = hexToRgba(coin.color, 0.55);
+          const symColor = hexToRgba(coin.color, 0.5);
           return (
             <div
               key={coin.name}
@@ -193,15 +167,15 @@ export default function Hero() {
               style={{
                 width: coin.size,
                 height: coin.size,
-                top: pos.top,
-                bottom: pos.bottom,
-                left: pos.left,
-                right: pos.right,
+                top: (coin as { top?: string }).top,
+                bottom: (coin as { bottom?: string }).bottom,
+                left: (coin as { left?: string }).left,
+                right: (coin as { right?: string }).right,
                 background: bg,
                 border: `1px solid ${border}`,
                 backdropFilter: "blur(2px)",
-                animation: `${animName} ${dur}s ease-in-out infinite`,
-                animationDelay: `${del}s`,
+                animation: coin.anim,
+                animationDelay: coin.delay,
                 pointerEvents: "auto",
                 transition: "filter 0.3s ease",
               }}
