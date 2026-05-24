@@ -27,7 +27,7 @@ const cases: Case[] = [
     tag: "Payments · KYC · Growth",
     metrics: [
       { value: "10K+", label: "Active users" },
-      { value: "$11M+", label: "Transaction volume" },
+      { value: "$MM+", label: "Transaction volume" },
       { value: "5mo", label: "To reach scale" },
       { value: "60%", label: "Payback period" },
     ],
@@ -38,7 +38,7 @@ const cases: Case[] = [
     solution:
       "Implemented full KYC flow. Rejected paid acquisition channels (CAC was $110+). Focused on CRM-driven activation (21% activation rate) and a referral program with 2.8:1 LTV/CAC ratio.",
     result:
-      "10,000+ active users within 5 months, $11M+ in transaction volume, 60% payback period. Built a durable growth engine without burning budget on paid channels.",
+      "10,000+ active users within 5 months, $MM+ in transaction volume, 60% payback period. Built a durable growth engine without burning budget on paid channels.",
     lesson:
       "Outsourcing compliance means outsourcing control over your activation funnel. The partner's KYC flow directly determined our conversion rate — something we learned the hard way.",
     accentFrom: "from-indigo-500",
@@ -51,7 +51,7 @@ const cases: Case[] = [
     subtitle: "Revenue diversification via third-party widget",
     tag: "Fiat · Integration · Speed",
     metrics: [
-      { value: "$1.2M", label: "Monthly volume" },
+      { value: "$4.2M+", label: "Monthly volume" },
       { value: "3mo", label: "ROI achieved" },
       { value: "34%", label: "Users using P2P already" },
       { value: "0", label: "KYC licenses needed" },
@@ -63,7 +63,7 @@ const cases: Case[] = [
     solution:
       "Instead of building own infrastructure (months of licensing, compliance, banking), integrated Mercuryo as a white-label widget. No KYC, no licenses, launched in weeks.",
     result:
-      "$1.2M monthly volume reached in 3 months. ROI achieved in 3 months. Proved the market fit before considering whether to build in-house.",
+      "$4.2M+ monthly volume reached. ROI achieved in 3 months. Proved the market fit before considering whether to build in-house.",
     lesson:
       "Speed of validation beats control over UX at early stage. We could always own the experience later — but we needed to know if users would convert first.",
     accentFrom: "from-emerald-500",
@@ -71,26 +71,26 @@ const cases: Case[] = [
   },
   {
     id: 3,
-    company: "SimpleSwap",
-    title: "Non-Custodial Wallet Extension",
-    subtitle: "A deliberate shutdown — and what it taught me",
-    tag: "Wallet · Retention · Decision",
+    company: "EMCD",
+    title: "Custodial Wallet Growth",
+    subtitle: "Cross-activation and retention at scale",
+    tag: "Retention · Cross-activation · Growth",
     metrics: [
-      { value: "2K", label: "Users in 6 months" },
-      { value: "↓", label: "Retention vs core" },
-      { value: "0", label: "Network effect" },
-      { value: "1", label: "Right call: shut down" },
+      { value: "42K", label: "MAU (from 30K)" },
+      { value: "400K", label: "Total users" },
+      { value: "+11%", label: "LTV growth" },
+      { value: "+40%", label: "MAU growth" },
     ],
     problem:
-      "Goal: attract new audience segments and monetize via in-wallet exchange. Built a browser extension wallet targeting crypto-curious users.",
+      "Active base was growing but slower than potential — users held crypto in the wallet without converting to monetized products. Churn left without revenue conversion.",
     signal:
-      "2,000 users over 6 months — but mostly existing SimpleSwap users, not new audience. Retention was worse than the core product.",
+      "1,400 new active users/month were coming through phone and email transfers — an organic acquisition channel we weren't fully leveraging.",
     solution:
-      "Ran the experiment fully, measured against hypotheses, then made the decision to shut it down deliberately rather than continuing to invest in a losing bet.",
+      "Cross-activation strategy via CRM — redirected wallet users into card, on/off-ramp, and Coinhold earn product. Launched referral program with $ payout per new user activation. Expanded ramp with new coins and pairs. Took ownership of ecosystem liquidity.",
     result:
-      "Shut down. No users lost (they already had better alternatives). Team resources redirected to higher-leverage projects.",
+      "MAU grew from 30K to 42K (+40%), 400K total users in one year, LTV +11%, 3-month retention +4%, 1,400 new active users/month via phone and email transfers.",
     lesson:
-      "Without hardware differentiation or a network effect, a software wallet means competing with MetaMask on their home turf. Recognizing a failed experiment quickly — and killing it cleanly — is itself a product skill.",
+      "Retention without monetization is just cost. Cross-product activation via CRM outperformed any paid channel we tested.",
     accentFrom: "from-orange-500",
     accentTo: "to-rose-600",
   },

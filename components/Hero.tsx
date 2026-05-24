@@ -98,13 +98,12 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl font-mono text-indigo-400/80 tracking-widest mb-6 uppercase">
-          Product Manager · Fintech & Crypto
+          Head of Product · Fintech & Crypto
         </p>
 
         <p className="text-[#8b8fa8] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
-          I ship products at the intersection of finance and crypto —{" "}
-          <span className="text-indigo-300">from zero to revenue</span>, with
-          data and speed.
+          9+ years building crypto &amp; fintech products.{" "}
+          <span className="text-indigo-300">From zero to revenue</span> — fast.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

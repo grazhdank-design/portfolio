@@ -40,25 +40,22 @@ export default function About() {
 
           <div className="space-y-4 text-[#8b8fa8] leading-relaxed text-base">
             <p>
-              I'm a product manager focused on fintech and crypto — the kind of products where
-              trust, speed, and regulatory reality all collide at once.
+              I&apos;m a Head of Product with 9+ years in crypto and fintech, 5 years in executive
+              roles. I&apos;ve launched 5 MVPs, scaled products to 1M+ MAU, grown revenue up to 300%
+              YoY, and hired 90+ people across 9 product teams.
             </p>
             <p>
               At{" "}
-              <span className="text-indigo-300 font-medium">EMCD</span>, I launched a crypto
-              debit card from zero to 10,000+ active users and $11M+ in transaction volume.
-              At{" "}
-              <span className="text-indigo-300 font-medium">SimpleSwap</span>, I shipped a
-              fiat on/off-ramp that hit $1.2M monthly volume in three months.
+              <span className="text-indigo-300 font-medium">EMCD</span> I launched a crypto card
+              end-to-end — 10,000+ active users, $MM+ in transaction volume. At{" "}
+              <span className="text-indigo-300 font-medium">SimpleSwap</span> I built a fiat
+              on/off-ramp that reached $4.2M+ monthly volume. I&apos;ve also shut down a product when
+              the signal was clear — and that taught me as much as the wins.
             </p>
             <p>
-              I've also learned when to kill things: a non-custodial wallet that never found
-              its audience became one of my sharpest lessons in when to stop.
-            </p>
-            <p>
-              These days I build with AI tools — including using{" "}
-              <span className="text-indigo-300 font-medium">Claude Code</span> to ship this
-              site. I'm interested in where AI meets financial infrastructure.
+              I build with data, move fast on validated bets, and say no to the rest. These days
+              I use AI tools to ship faster — including{" "}
+              <span className="text-indigo-300 font-medium">Claude Code</span> to build this site.
             </p>
           </div>
         </div>
@@ -66,10 +63,10 @@ export default function About() {
         {/* stat strip */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { value: "10K+", label: "Card users" },
-            { value: "$11M+", label: "Transaction volume" },
-            { value: "$1.2M", label: "Monthly fiat ramp volume" },
-            { value: "3mo", label: "Fiat ramp ROI" },
+            { value: "1M+", label: "MAU scaled" },
+            { value: "300%", label: "Revenue growth YoY" },
+            { value: "$4.2M+", label: "Monthly fiat ramp volume" },
+            { value: "90+", label: "People hired" },
           ].map((s) => (
             <div
               key={s.label}
