@@ -13,21 +13,21 @@ function hexToRgba(hex: string, alpha: number): string {
 }
 
 const coins = [
-  { symbol: "₿",  name: "BTC",   color: "#f7931a", size: 90,  top: "8%",    left: "5%",   anim: "float-a 12s ease-in-out infinite", delay: "0s"   },
-  { symbol: "Ξ",  name: "ETH",   color: "#627eea", size: 80,  top: "15%",   right: "6%",  anim: "float-b 15s ease-in-out infinite", delay: "2s"   },
-  { symbol: "₮",  name: "USDT",  color: "#26a17b", size: 70,  top: "35%",   left: "3%",   anim: "float-c 10s ease-in-out infinite", delay: "1s"   },
-  { symbol: "⬡",  name: "BNB",   color: "#f3ba2f", size: 100, top: "60%",   left: "8%",   anim: "float-d 13s ease-in-out infinite", delay: "3s"   },
-  { symbol: "◎",  name: "SOL",   color: "#9945ff", size: 85,  bottom: "12%",left: "18%",  anim: "float-e 9s ease-in-out infinite",  delay: "0.5s" },
-  { symbol: "$",  name: "USDC",  color: "#2775ca", size: 95,  bottom: "8%", right: "10%", anim: "float-f 14s ease-in-out infinite", delay: "1.5s" },
-  { symbol: "₳",  name: "ADA",   color: "#0033ad", size: 70,  top: "5%",    left: "30%",  anim: "float-a 11s ease-in-out infinite", delay: "4s"   },
-  { symbol: "Ð",  name: "DOGE",  color: "#c3a634", size: 75,  top: "10%",   right: "25%", anim: "float-b 16s ease-in-out infinite", delay: "2.5s" },
-  { symbol: "⬡",  name: "TON",   color: "#0088cc", size: 80,  top: "45%",   right: "4%",  anim: "float-c 12s ease-in-out infinite", delay: "0.8s" },
-  { symbol: "◈",  name: "TRX",   color: "#e50915", size: 75,  bottom: "20%",right: "22%", anim: "float-d 10s ease-in-out infinite", delay: "3.5s" },
-  { symbol: "▲",  name: "AVAX",  color: "#e84142", size: 90,  top: "25%",   left: "18%",  anim: "float-e 13s ease-in-out infinite", delay: "1.2s" },
-  { symbol: "●",  name: "DOT",   color: "#e6007a", size: 85,  bottom: "30%",left: "35%",  anim: "float-f 11s ease-in-out infinite", delay: "2s"   },
-  { symbol: "⬡",  name: "LINK",  color: "#2a5ada", size: 70,  top: "70%",   right: "15%", anim: "float-a 14s ease-in-out infinite", delay: "0.3s" },
-  { symbol: "◈",  name: "MATIC", color: "#8247e5", size: 80,  top: "5%",    right: "42%", anim: "float-b 12s ease-in-out infinite", delay: "4.5s" },
-  { symbol: "✕",  name: "XRP",   color: "#346aa9", size: 75,  bottom: "5%", left: "45%",  anim: "float-c 15s ease-in-out infinite", delay: "1.8s" },
+  { symbol: "₿", name: "BTC",   color: "#f7931a", size: 90,  top: "8%",     left: "5%",   anim: "float-a 14s ease-in-out infinite", delay: "0s"   },
+  { symbol: "Ξ", name: "ETH",   color: "#627eea", size: 80,  top: "15%",    right: "6%",  anim: "float-b 17s ease-in-out infinite", delay: "2s"   },
+  { symbol: "₮", name: "USDT",  color: "#26a17b", size: 70,  top: "38%",    left: "3%",   anim: "float-c 12s ease-in-out infinite", delay: "1s"   },
+  { symbol: "⬡", name: "BNB",   color: "#f3ba2f", size: 100, top: "62%",    left: "7%",   anim: "float-d 15s ease-in-out infinite", delay: "3s"   },
+  { symbol: "◎", name: "SOL",   color: "#9945ff", size: 85,  bottom: "10%", left: "16%",  anim: "float-e 13s ease-in-out infinite", delay: "0.5s" },
+  { symbol: "$", name: "USDC",  color: "#2775ca", size: 95,  bottom: "8%",  right: "9%",  anim: "float-f 16s ease-in-out infinite", delay: "1.5s" },
+  { symbol: "₳", name: "ADA",   color: "#0033ad", size: 70,  top: "5%",     left: "28%",  anim: "float-a 18s ease-in-out infinite", delay: "4s"   },
+  { symbol: "Ð", name: "DOGE",  color: "#c3a634", size: 75,  top: "9%",     right: "24%", anim: "float-b 20s ease-in-out infinite", delay: "2.5s" },
+  { symbol: "⬡", name: "TON",   color: "#0088cc", size: 80,  top: "47%",    right: "4%",  anim: "float-c 14s ease-in-out infinite", delay: "0.8s" },
+  { symbol: "◈", name: "TRX",   color: "#e50915", size: 75,  bottom: "22%", right: "20%", anim: "float-d 12s ease-in-out infinite", delay: "3.5s" },
+  { symbol: "▲", name: "AVAX",  color: "#e84142", size: 90,  top: "26%",    left: "17%",  anim: "float-e 19s ease-in-out infinite", delay: "1.2s" },
+  { symbol: "●", name: "DOT",   color: "#e6007a", size: 85,  bottom: "28%", left: "33%",  anim: "float-f 13s ease-in-out infinite", delay: "2s"   },
+  { symbol: "⬡", name: "LINK",  color: "#2a5ada", size: 70,  top: "72%",    right: "14%", anim: "float-a 16s ease-in-out infinite", delay: "0.3s" },
+  { symbol: "◈", name: "MATIC", color: "#8247e5", size: 80,  top: "5%",     right: "41%", anim: "float-b 15s ease-in-out infinite", delay: "4.5s" },
+  { symbol: "✕", name: "XRP",   color: "#346aa9", size: 75,  bottom: "5%",  left: "44%",  anim: "float-c 17s ease-in-out infinite", delay: "1.8s" },
 ];
 
 export default function Hero() {
@@ -139,7 +139,7 @@ export default function Hero() {
   return (
     <section className="sticky top-0 z-10 bg-[#0f0f0f] min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 relative">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <canvas ref={noiseCanvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1, opacity: 0.10, mixBlendMode: "screen" }} />
+      <canvas ref={noiseCanvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1, opacity: 0.018, mixBlendMode: "screen" }} />
 
       {/* subtle neutral radial */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(130,130,150,0.04)_0%,transparent_70%)]" />
@@ -154,35 +154,35 @@ export default function Hero() {
         }}
       />
 
-      {/* crypto coin circles */}
+      {/* floating crypto coin circles */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {coins.map((coin) => {
-          const bg = hexToRgba(coin.color, 0.07);
+          const bg     = hexToRgba(coin.color, 0.07);
           const border = hexToRgba(coin.color, 0.18);
-          const symColor = hexToRgba(coin.color, 0.5);
+          const sym    = hexToRgba(coin.color, 0.5);
           return (
             <div
               key={coin.name}
               className="absolute flex flex-col items-center justify-center rounded-full"
               style={{
-                width: coin.size,
-                height: coin.size,
-                top: (coin as { top?: string }).top,
-                bottom: (coin as { bottom?: string }).bottom,
-                left: (coin as { left?: string }).left,
-                right: (coin as { right?: string }).right,
-                background: bg,
-                border: `1px solid ${border}`,
-                backdropFilter: "blur(2px)",
-                animation: coin.anim,
-                animationDelay: coin.delay,
-                pointerEvents: "auto",
-                transition: "filter 0.3s ease",
+                width:           coin.size,
+                height:          coin.size,
+                top:             coin.top,
+                bottom:          coin.bottom,
+                left:            coin.left,
+                right:           coin.right,
+                background:      bg,
+                border:          `1px solid ${border}`,
+                backdropFilter:  "blur(2px)",
+                animation:       coin.anim,
+                animationDelay:  coin.delay,
+                pointerEvents:   "auto",
+                transition:      "filter 0.3s ease",
               }}
               onMouseEnter={e => (e.currentTarget.style.filter = "hue-rotate(20deg) brightness(1.5)")}
               onMouseLeave={e => (e.currentTarget.style.filter = "")}
             >
-              <span className="font-mono leading-none" style={{ color: symColor, fontSize: coin.size * 0.35 }}>
+              <span className="font-mono leading-none" style={{ color: sym, fontSize: coin.size * 0.35 }}>
                 {coin.symbol}
               </span>
               <span className="font-mono text-white/20" style={{ fontSize: 8, marginTop: 2 }}>
