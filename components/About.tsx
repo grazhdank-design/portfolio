@@ -76,7 +76,11 @@ export default function About() {
   const { ref, visible } = useScrollReveal(0.15);
 
   return (
-    <section id="about" className="py-32 px-6">
+    <section
+      id="about"
+      className="relative z-20 bg-[#0a0a0f] py-32 px-6 rounded-t-[24px]"
+      style={{ boxShadow: "0 -12px 60px rgba(0,0,0,0.85)" }}
+    >
       <div
         ref={ref}
         className={`max-w-4xl mx-auto transition-all duration-700 ${

@@ -74,7 +74,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+    <section className="sticky top-0 z-10 bg-[#0a0a0f] relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(99,102,241,0.06)_0%,transparent_70%)]" />
       <div
@@ -85,6 +85,38 @@ export default function Hero() {
           backgroundSize: "60px 60px",
         }}
       />
+
+      {/* floating decorative icons */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+        {[
+          { s: "₿",  top: "12%",  left: "7%",   op: 0.10, fs: "34px", anim: "float-a 12s ease-in-out infinite", delay: "0s" },
+          { s: "Ξ",  top: "22%",  right: "9%",  op: 0.08, fs: "26px", anim: "float-b 15s ease-in-out infinite", delay: "2s" },
+          { s: "◈",  top: "64%",  left: "5%",   op: 0.11, fs: "22px", anim: "float-c 10s ease-in-out infinite", delay: "1s" },
+          { s: "$",  bottom: "18%", right: "7%", op: 0.09, fs: "38px", anim: "float-d 13s ease-in-out infinite", delay: "3s" },
+          { s: "✦",  top: "7%",   right: "22%", op: 0.10, fs: "18px", anim: "float-e 9s ease-in-out infinite",  delay: "0.5s" },
+          { s: "▲",  bottom: "28%", left: "13%", op: 0.08, fs: "20px", anim: "float-f 14s ease-in-out infinite", delay: "1.5s" },
+          { s: "⌨",  top: "43%",  right: "15%", op: 0.07, fs: "24px", anim: "float-a 11s ease-in-out infinite", delay: "4s" },
+          { s: "∞",  top: "76%",  left: "27%",  op: 0.09, fs: "30px", anim: "float-b 16s ease-in-out infinite", delay: "2.5s" },
+          { s: "⊕",  bottom: "13%", right: "27%", op: 0.08, fs: "26px", anim: "float-e 12s ease-in-out infinite", delay: "0.8s" },
+        ].map((icon, i) => (
+          <span
+            key={i}
+            className="absolute font-mono text-indigo-400"
+            style={{
+              top: icon.top,
+              bottom: (icon as {bottom?: string}).bottom,
+              left: icon.left,
+              right: (icon as {right?: string}).right,
+              opacity: icon.op,
+              fontSize: icon.fs,
+              animation: icon.anim,
+              animationDelay: icon.delay,
+            }}
+          >
+            {icon.s}
+          </span>
+        ))}
+      </div>
 
       <div className="relative z-10 text-center w-full max-w-6xl mx-auto">
         {/* badge */}

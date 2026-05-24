@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-white/5">
+    <footer className="relative z-20 bg-[#0a0a0f] py-8 px-6 border-t border-white/5">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#2e3145] font-mono">
         <div className="flex items-center gap-3">
           <span>© {new Date().getFullYear()} Kirill</span>

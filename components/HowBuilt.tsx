@@ -61,7 +61,7 @@ export default function HowBuilt() {
   }, []);
 
   return (
-    <section id="how-built" className="py-24 px-6 border-t border-white/5">
+    <section id="how-built" className="relative z-20 bg-[#0a0a0f] py-24 px-6 border-t border-white/5">
       <div
         ref={ref}
         className={`max-w-4xl mx-auto transition-all duration-700 ${
