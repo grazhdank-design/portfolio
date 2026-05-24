@@ -21,50 +21,58 @@ const experience = [
     company: "EMCD",
     role: "Head of Product",
     period: "Apr 2025 – Present",
-    desc: "Scaled unit from 1 to 3 cross-functional teams. Launched crypto card (10K users), on/off-ramp ($4.2M+ monthly), phone/email transfers (1,400 new users/month). Full P&L ownership.",
-    accent: "from-indigo-500 to-violet-600",
+    desc: "Scaled unit from 1 to 3 cross-functional teams, owning custodial wallet, crypto card, on/off-ramp, and payments infrastructure. Launched crypto card reaching 10,000+ users and $MM+ in deposit volume. Increased unit revenue 24% YoY. Expanded on/off-ramp with 64 new coins (+27% avg transaction value). Launched phone/email transfers generating 1,400 new active users/month. Increased LTV by 11%, 3-month retention +4%. Prepared company for MiCA/CASP/VASP licensing.",
   },
   {
     company: "SimpleSwap",
     role: "Head of Product",
     period: "Jan 2020 – Apr 2025",
-    desc: "Led 4 PMs, 30+ reports. Company reached top 3 in Europe, 1M MAU. 270% revenue growth, launched loyalty program, mobile apps, KYC/KYT compliance.",
-    accent: "from-emerald-500 to-teal-600",
+    desc: "Led 4 PMs and 30+ direct/indirect reports across development, DevOps, marketing, analytics, and design. Company reached top 3 in Europe with 1M MAU in 2 years. Increased revenue 40% YoY via new API product with 50+ B2B partners. Achieved 270% annual revenue growth adding 1,200+ coins over 5 years. Increased LTV 50% via loyalty program. Launched 2 mobile apps (iOS/Android) reaching 85K MAU. Implemented KYC/KYT compliance in 3 months.",
   },
   {
     company: "OCTA",
-    role: "Senior PM",
+    role: "Senior Product Manager",
     period: "Mar 2019 – Dec 2019",
-    desc: "Launched mobile app MVP, 70K MAU in 6 months.",
-    accent: "from-orange-500 to-amber-500",
+    desc: "Launched mobile app MVP achieving 70K MAU in 6 months. Improved 30-day retention 12% via 5 UX experiments. Increased revenue 34% YoY via copy trading integration. Grew daily organic traffic 231% via ASO optimization.",
   },
   {
     company: "NoNameLab",
     role: "Product Manager",
     period: "Jun 2016 – Mar 2019",
-    desc: "0→4K MAU in 9 months, payback in 15 months on $700K investment.",
-    accent: "from-sky-500 to-cyan-500",
+    desc: "Joined CEO team. Achieved payback within 15 months on $700K investment. Launched website and mobile app in 6 months. Grew from 0 to 4,000 MAU in 9 months via paid acquisition.",
   },
 ];
 
-const skills = [
+const skillGroups = [
   {
-    group: "Product",
-    items: ["Strategy", "Roadmap", "GTM", "SQL", "Data Analytics", "UX Research", "Unit Economics", "JTBD", "CustDev"],
+    title: "Product",
+    items: [
+      "Strategy", "Vision", "Product Roadmap", "Go-to-Market", "SQL",
+      "Data Analytics", "UX Research", "Unit Economics", "JTBD", "CustDev",
+      "Amplitude", "Figma", "Jira", "Miro",
+    ],
   },
   {
-    group: "Team & Tools",
-    items: ["OKR", "Scrum", "Kanban", "Amplitude", "Jira", "Figma", "Miro", "AI tools"],
+    title: "Team & Process",
+    items: [
+      "Leadership", "OKR", "Scrum", "Kanban", "Agile",
+      "Org Design", "Hiring", "AI Tools",
+    ],
   },
 ];
 
 const certifications = [
-  { title: "Certified Scrum Product Owner®", org: "Scrum Alliance",    year: "2025" },
-  { title: "Oxford Fintech Programme",        org: "Oxford University", year: "2024" },
-  { title: "SQL for Product Analytics",       org: "GoPractice",        year: "2024" },
-  { title: "Product Management",              org: "ICAgile",           year: "2023" },
-  { title: "Data-driven PM Simulator",        org: "GoPractice",        year: "2021" },
+  { name: "Certified Scrum Product Owner®", issuer: "Scrum Alliance",    year: "2025" },
+  { name: "Oxford Fintech Programme",        issuer: "Oxford University", year: "2024" },
+  { name: "SQL for Product Analytics",       issuer: "GoPractice",        year: "2024" },
+  { name: "Product Management",              issuer: "ICAgile",           year: "2023" },
+  { name: "Certified LeSS Basics",           issuer: "LeSS.works",        year: "2023" },
+  { name: "Data-driven PM Simulator",        issuer: "GoPractice",        year: "2021" },
 ];
+
+const headingStyle: React.CSSProperties = {
+  fontSize: "clamp(52px, 7vw, 96px)",
+};
 
 export default function CVSection() {
   const { ref, visible } = useScrollReveal();
@@ -73,70 +81,106 @@ export default function CVSection() {
     <section className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div
         ref={ref}
-        className={`max-w-4xl mx-auto transition-all duration-700 ${
+        className={`max-w-6xl mx-auto transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
         style={{ willChange: "transform" }}
       >
-        <div className="flex items-center gap-3 mb-16">
-          <div className="w-8 h-px bg-indigo-500" />
-          <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Experience</span>
-        </div>
+        <div className="grid md:grid-cols-[55fr_45fr] gap-20 items-start">
 
-        <div className="grid lg:grid-cols-[1fr_220px_220px] gap-12">
-          {/* Experience */}
-          <div className="space-y-10">
-            {experience.map((job) => (
-              <div key={job.company}>
-                <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className={`text-xs font-mono px-2 py-0.5 rounded-full bg-gradient-to-r ${job.accent} text-white`}>
-                    {job.company}
-                  </span>
-                  <span className="text-white/60 text-xs font-semibold">{job.role}</span>
-                </div>
-                <div className="text-[#2e3145] font-mono text-[10px] mb-2 tracking-wider">{job.period}</div>
-                <p className="text-[#7a7e94] text-xs leading-relaxed">{job.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Skills */}
-          <div className="space-y-7">
-            {skills.map((group) => (
-              <div key={group.group}>
-                <div className="text-[10px] font-mono text-[#3a3d52] tracking-widest uppercase mb-3">
-                  {group.group}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="text-[11px] px-2 py-0.5 rounded-full border border-white/5 bg-white/[0.02] text-[#7a7e94]"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Certifications */}
+          {/* ── Left: Experience ── */}
           <div>
-            <div className="text-[10px] font-mono text-[#3a3d52] tracking-widest uppercase mb-4">
-              Certifications
+            <h2
+              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
+              style={headingStyle}
+            >
+              Experience
+            </h2>
+
+            <div>
+              {experience.map((job, i) => (
+                <div key={job.company} className="border-t border-white/8 py-10">
+                  <div className="flex items-start justify-between mb-2">
+                    <span className="font-mono text-sm text-white/35 uppercase tracking-widest">
+                      {job.period}
+                    </span>
+                    <span className="font-mono text-sm text-white/10">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="font-mono text-[13px] text-white/40 uppercase tracking-widest mt-2">
+                    {job.company}
+                  </div>
+                  <h3
+                    className="font-bold text-white mt-1 mb-4 leading-tight"
+                    style={{ fontSize: "clamp(20px, 2.5vw, 28px)" }}
+                  >
+                    {job.role}
+                  </h3>
+                  <p className="text-white/55 leading-relaxed" style={{ fontSize: 15 }}>
+                    {job.desc}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div className="space-y-3">
-              {certifications.map((cert) => (
-                <div key={cert.title} className="p-3 rounded-lg border border-white/5 bg-white/[0.02]">
-                  <div className="text-xs text-white/70 font-medium leading-snug mb-1.5">{cert.title}</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-[#4a4e62] font-mono">{cert.org}</span>
-                    <span className="text-[10px] text-indigo-400/60 font-mono">{cert.year}</span>
+          </div>
+
+          {/* ── Right: Skills + Certifications ── */}
+          <div>
+
+            {/* Skills */}
+            <h2
+              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
+              style={headingStyle}
+            >
+              Skills
+            </h2>
+
+            <div className="space-y-10 mb-24">
+              {skillGroups.map((group) => (
+                <div key={group.title}>
+                  <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
+                    {group.title}
+                  </div>
+                  <div>
+                    {group.items.map((skill) => (
+                      <div
+                        key={skill}
+                        className="border-b border-white/5 py-3 text-white/70"
+                        style={{ fontSize: 16 }}
+                      >
+                        {skill}
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Certifications */}
+            <h2
+              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
+              style={headingStyle}
+            >
+              Certifications
+            </h2>
+
+            <div>
+              {certifications.map((cert) => (
+                <div key={cert.name} className="border-t border-white/8 py-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="font-bold text-white mb-1" style={{ fontSize: 16 }}>
+                        {cert.name}
+                      </div>
+                      <div className="font-mono text-sm text-white/35">{cert.issuer}</div>
+                    </div>
+                    <span className="font-mono text-sm text-indigo-400 shrink-0">{cert.year}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
