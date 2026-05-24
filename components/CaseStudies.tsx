@@ -90,9 +90,9 @@ function WalletIllustration() {
 }
 
 const illustrations = [
-  <CardIllustration key="card" />,
+  <img key="card" src="/cases/crypto-card.jpg" alt="Crypto card" className="object-cover rounded-2xl w-full h-full" />,
   <RampIllustration key="ramp" />,
-  <WalletIllustration key="wallet" />,
+  <img key="wallet" src="/cases/wallet.jpg" alt="Custodial wallet" className="object-cover rounded-2xl w-full h-full" />,
 ];
 
 /* ─── Scroll reveal hook ─────────────────────────────────────── */
@@ -209,8 +209,8 @@ function CaseItem({ index }: { index: number }) {
           </Link>
         </div>
 
-        {/* SVG illustration with glitch hover */}
-        <div className="hidden md:flex items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-5 aspect-square svg-glitch-wrap">
+        {/* illustration with glitch hover */}
+        <div className="hidden md:flex items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-5 aspect-square svg-glitch-wrap noise-img-wrap">
           {illustrations[index]}
         </div>
       </div>

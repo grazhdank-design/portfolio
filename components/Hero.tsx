@@ -7,6 +7,7 @@ const LAST = "Grazhdan".split("");
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const noiseCanvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -74,9 +75,48 @@ export default function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    const canvas = noiseCanvasRef.current;
+    if (!canvas) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    let raf: number;
+    const draw = () => {
+      const w = canvas.width;
+      const h = canvas.height;
+      const imageData = ctx.createImageData(w, h);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = Math.random() * 255 | 0;
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = 255;
+      }
+      ctx.putImageData(imageData, 0, 0);
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
   return (
     <section className="sticky top-0 z-10 bg-[#0f0f0f] min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 relative">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <canvas ref={noiseCanvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1, opacity: 0.04 }} />
 
       {/* subtle neutral radial */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(130,130,150,0.04)_0%,transparent_70%)]" />
@@ -144,7 +184,7 @@ export default function Hero() {
               className="inline-block bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={
                 mounted
-                  ? { animation: `letterReveal 0.7s cubic-bezier(0.16,1,0.3,1) both`, animationDelay: `${i * 55}ms` }
+                  ? { animation: `letterReveal 1.2s cubic-bezier(0.16,1,0.3,1) both`, animationDelay: `${i * 80}ms` }
                   : { opacity: 0 }
               }
             >
@@ -165,7 +205,7 @@ export default function Hero() {
               className="inline-block bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 bg-clip-text text-transparent"
               style={
                 mounted
-                  ? { animation: `letterReveal 0.7s cubic-bezier(0.16,1,0.3,1) both`, animationDelay: `${(FIRST.length * 55) + i * 45}ms` }
+                  ? { animation: `letterReveal 1.2s cubic-bezier(0.16,1,0.3,1) both`, animationDelay: `${(FIRST.length * 80) + i * 60}ms` }
                   : { opacity: 0 }
               }
             >
