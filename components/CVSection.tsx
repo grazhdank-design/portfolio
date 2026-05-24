@@ -46,18 +46,11 @@ const experience = [
 const skillGroups = [
   {
     title: "Product",
-    items: [
-      "Strategy", "Vision", "Product Roadmap", "Go-to-Market", "SQL",
-      "Data Analytics", "UX Research", "Unit Economics", "JTBD", "CustDev",
-      "Amplitude", "Figma", "Jira", "Miro",
-    ],
+    items: ["Strategy", "Vision", "Product Roadmap", "Go-to-Market", "SQL", "Data Analytics", "UX Research", "Unit Economics", "JTBD", "CustDev", "Amplitude", "Figma", "Jira", "Miro"],
   },
   {
     title: "Team & Process",
-    items: [
-      "Leadership", "OKR", "Scrum", "Kanban", "Agile",
-      "Org Design", "Hiring", "AI Tools",
-    ],
+    items: ["Leadership", "OKR", "Scrum", "Kanban", "Agile", "Org Design", "Hiring", "AI Tools"],
   },
 ];
 
@@ -70,6 +63,14 @@ const certifications = [
   { name: "Data-driven PM Simulator",        issuer: "GoPractice",        year: "2021" },
 ];
 
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-8 h-px bg-indigo-500" />
+      <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">{label}</span>
+    </div>
+  );
+}
 
 export default function CVSection() {
   const { ref, visible } = useScrollReveal();
@@ -78,111 +79,81 @@ export default function CVSection() {
     <section className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div
         ref={ref}
-        className={`max-w-6xl mx-auto transition-all duration-700 ${
+        className={`max-w-4xl mx-auto transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
         style={{ willChange: "transform" }}
       >
-        <div className="grid md:grid-cols-[55fr_45fr] gap-20 items-start">
 
-          {/* ── Left: Experience ── */}
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-8 h-px bg-indigo-500" />
-              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Experience</span>
+        {/* ── Experience ── */}
+        <SectionLabel label="Experience" />
+        <div className="mb-20">
+          {experience.map((job, i) => (
+            <div key={job.company} className="border-t border-white/8 py-10">
+              <div className="flex items-start justify-between mb-2">
+                <span className="font-mono text-sm text-white/35 uppercase tracking-widest">
+                  {job.period}
+                </span>
+                <span className="font-mono text-sm text-white/10">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="font-mono text-[13px] text-white/40 uppercase tracking-widest mt-2">
+                {job.company}
+              </div>
+              <h3
+                className="font-bold text-white mt-1 mb-4 leading-tight"
+                style={{ fontSize: "clamp(20px, 2.5vw, 28px)" }}
+              >
+                {job.role}
+              </h3>
+              <p className="text-white/55 leading-relaxed" style={{ fontSize: 15 }}>
+                {job.desc}
+              </p>
             </div>
-            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
-              Work history
-            </h2>
+          ))}
+        </div>
 
-            <div>
-              {experience.map((job, i) => (
-                <div key={job.company} className="border-t border-white/8 py-10">
-                  <div className="flex items-start justify-between mb-2">
-                    <span className="font-mono text-sm text-white/35 uppercase tracking-widest">
-                      {job.period}
+        {/* ── Skills ── */}
+        <div className="border-t border-white/5 pt-16 mb-20">
+          <SectionLabel label="Skills" />
+          <div className="grid sm:grid-cols-2 gap-10">
+            {skillGroups.map((group) => (
+              <div key={group.title}>
+                <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
+                  {group.title}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 rounded-full border border-white/10 text-white/55 text-sm"
+                    >
+                      {skill}
                     </span>
-                    <span className="font-mono text-sm text-white/10">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="font-mono text-[13px] text-white/40 uppercase tracking-widest mt-2">
-                    {job.company}
-                  </div>
-                  <h3
-                    className="font-bold text-white mt-1 mb-4 leading-tight"
-                    style={{ fontSize: "clamp(20px, 2.5vw, 28px)" }}
-                  >
-                    {job.role}
-                  </h3>
-                  <p className="text-white/55 leading-relaxed" style={{ fontSize: 15 }}>
-                    {job.desc}
-                  </p>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Right: Skills + Certifications ── */}
-          <div>
-
-            {/* Skills */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-8 h-px bg-indigo-500" />
-              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Skills</span>
-            </div>
-            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
-              What I work with
-            </h2>
-
-            <div className="space-y-10 mb-24">
-              {skillGroups.map((group) => (
-                <div key={group.title}>
-                  <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
-                    {group.title}
-                  </div>
-                  <div>
-                    {group.items.map((skill) => (
-                      <div
-                        key={skill}
-                        className="border-b border-white/5 py-3 text-white/70"
-                        style={{ fontSize: 16 }}
-                      >
-                        {skill}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Certifications */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-8 h-px bg-indigo-500" />
-              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Certifications</span>
-            </div>
-            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
-              Credentials
-            </h2>
-
-            <div>
-              {certifications.map((cert) => (
-                <div key={cert.name} className="border-t border-white/8 py-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="font-bold text-white mb-1" style={{ fontSize: 16 }}>
-                        {cert.name}
-                      </div>
-                      <div className="font-mono text-sm text-white/35">{cert.issuer}</div>
-                    </div>
-                    <span className="font-mono text-sm text-indigo-400 shrink-0">{cert.year}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* ── Certifications ── */}
+        <div className="border-t border-white/5 pt-16">
+          <SectionLabel label="Certifications" />
+          <div className="grid sm:grid-cols-2 gap-4">
+            {certifications.map((cert) => (
+              <div key={cert.name} className="p-4 rounded-xl border border-white/5 bg-white/[0.02]">
+                <div className="flex items-start justify-between gap-3 mb-1">
+                  <span className="text-sm font-bold text-white leading-snug">{cert.name}</span>
+                  <span className="text-xs text-indigo-400 font-mono shrink-0">{cert.year}</span>
+                </div>
+                <div className="text-xs text-white/35 font-mono">{cert.issuer}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
