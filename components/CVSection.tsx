@@ -84,26 +84,29 @@ export default function CVSection() {
         }`}
         style={{ willChange: "transform" }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-16 items-start">
 
-          {/* ── Col 1: Experience ── */}
+          {/* ── Left: Experience ── */}
           <div>
             <SectionLabel label="Experience" />
             <div>
               {experience.map((job, i) => (
-                <div key={job.company} className="border-t border-white/8 py-8">
+                <div key={job.company} className="border-t border-white/8 py-10">
                   <div className="flex items-start justify-between mb-2">
-                    <span className="font-mono text-xs text-white/35 uppercase tracking-widest">
+                    <span className="font-mono text-sm text-white/35 uppercase tracking-widest">
                       {job.period}
                     </span>
-                    <span className="font-mono text-xs text-white/10">
+                    <span className="font-mono text-sm text-white/10">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <div className="font-mono text-[11px] text-white/40 uppercase tracking-widest mt-2">
+                  <div className="font-mono text-[13px] text-white/40 uppercase tracking-widest mt-2">
                     {job.company}
                   </div>
-                  <h3 className="font-bold text-white text-base mt-1 mb-3 leading-tight">
+                  <h3
+                    className="font-bold text-white mt-1 mb-4 leading-tight"
+                    style={{ fontSize: "clamp(18px, 2vw, 24px)" }}
+                  >
                     {job.role}
                   </h3>
                   <p className="text-white/55 leading-relaxed text-sm">
@@ -114,46 +117,50 @@ export default function CVSection() {
             </div>
           </div>
 
-          {/* ── Col 2: Skills ── */}
-          <div>
-            <SectionLabel label="Skills" />
-            <div className="space-y-8">
-              {skillGroups.map((group) => (
-                <div key={group.title}>
-                  <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
-                    {group.title}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 rounded-full border border-white/10 text-white/55 text-sm"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* ── Right: Skills + Certifications ── */}
+          <div className="space-y-16">
 
-          {/* ── Col 3: Certifications ── */}
-          <div>
-            <SectionLabel label="Certifications" />
-            <div className="space-y-3">
-              {certifications.map((cert) => (
-                <div key={cert.name} className="p-4 rounded-xl border border-white/5 bg-white/[0.02]">
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <span className="text-sm font-bold text-white leading-snug">{cert.name}</span>
-                    <span className="text-xs text-indigo-400 font-mono shrink-0">{cert.year}</span>
+            {/* Skills */}
+            <div>
+              <SectionLabel label="Skills" />
+              <div className="space-y-8">
+                {skillGroups.map((group) => (
+                  <div key={group.title}>
+                    <div className="font-mono text-xs uppercase text-white/30 tracking-widest mb-4">
+                      {group.title}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1 rounded-full border border-white/10 text-white/55 text-sm"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="text-xs text-white/35 font-mono">{cert.issuer}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
+            {/* Certifications */}
+            <div>
+              <SectionLabel label="Certifications" />
+              <div>
+                {certifications.map((cert) => (
+                  <div key={cert.name} className="border-t border-white/5 py-4">
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <span className="text-sm font-bold text-white leading-snug">{cert.name}</span>
+                      <span className="text-xs text-indigo-400 font-mono shrink-0">{cert.year}</span>
+                    </div>
+                    <div className="text-xs text-white/35 font-mono">{cert.issuer}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
