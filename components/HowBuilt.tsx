@@ -54,7 +54,7 @@ export default function HowBuilt() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.04, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -80px 0px" }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -67,6 +67,7 @@ export default function HowBuilt() {
         className={`max-w-4xl mx-auto transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
+        style={{ willChange: "transform" }}
       >
         <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-px bg-indigo-500" />

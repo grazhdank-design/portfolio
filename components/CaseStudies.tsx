@@ -103,7 +103,7 @@ function useScrollReveal() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.04, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -80px 0px" }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -130,7 +130,7 @@ function CaseItem({ index }: { index: number }) {
       className={`border-t border-white/5 py-14 transition-all duration-700 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      style={{ transitionDelay: `${index * 80}ms`, willChange: "transform" }}
     >
       {/* header */}
       <div className="flex items-start gap-6 mb-10">
@@ -174,8 +174,15 @@ function CaseItem({ index }: { index: number }) {
         ))}
       </div>
 
-      {/* content + illustration */}
-      <div className="grid md:grid-cols-[1fr_260px] gap-10 items-start">
+      {/* full-width photo above content (cases 0 & 2) */}
+      {index !== 1 && (
+        <div className="noise-img-wrap svg-glitch-wrap rounded-xl overflow-hidden mb-10" style={{ height: "280px" }}>
+          {illustrations[index]}
+        </div>
+      )}
+
+      {/* content + right-column SVG (case 1 keeps side layout) */}
+      <div className={index === 1 ? "grid md:grid-cols-[1fr_260px] gap-10 items-start" : ""}>
         <div>
           <div className="grid sm:grid-cols-2 gap-7 mb-7">
             {([
@@ -209,10 +216,12 @@ function CaseItem({ index }: { index: number }) {
           </Link>
         </div>
 
-        {/* illustration with glitch hover */}
-        <div className="hidden md:flex items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-5 aspect-square svg-glitch-wrap noise-img-wrap">
-          {illustrations[index]}
-        </div>
+        {/* SVG illustration — fiat ramp side column */}
+        {index === 1 && (
+          <div className="hidden md:flex items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-5 aspect-square svg-glitch-wrap noise-img-wrap">
+            {illustrations[index]}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -231,6 +240,7 @@ export default function CaseStudies() {
           className={`transition-all duration-700 mb-4 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
+          style={{ willChange: "transform" }}
         >
           <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-px bg-indigo-500" />
