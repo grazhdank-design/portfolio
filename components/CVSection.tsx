@@ -70,9 +70,6 @@ const certifications = [
   { name: "Data-driven PM Simulator",        issuer: "GoPractice",        year: "2021" },
 ];
 
-const headingStyle: React.CSSProperties = {
-  fontSize: "clamp(52px, 7vw, 96px)",
-};
 
 export default function CVSection() {
   const { ref, visible } = useScrollReveal();
@@ -90,11 +87,12 @@ export default function CVSection() {
 
           {/* ── Left: Experience ── */}
           <div>
-            <h2
-              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
-              style={headingStyle}
-            >
-              Experience
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-8 h-px bg-indigo-500" />
+              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Experience</span>
+            </div>
+            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
+              Work history
             </h2>
 
             <div>
@@ -129,11 +127,12 @@ export default function CVSection() {
           <div>
 
             {/* Skills */}
-            <h2
-              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
-              style={headingStyle}
-            >
-              Skills
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-8 h-px bg-indigo-500" />
+              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Skills</span>
+            </div>
+            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
+              What I work with
             </h2>
 
             <div className="space-y-10 mb-24">
@@ -158,11 +157,12 @@ export default function CVSection() {
             </div>
 
             {/* Certifications */}
-            <h2
-              className="font-bold uppercase text-white tracking-tight mb-16 leading-none"
-              style={headingStyle}
-            >
-              Certifications
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-8 h-px bg-indigo-500" />
+              <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">Certifications</span>
+            </div>
+            <h2 className="font-bold text-white mb-16" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
+              Credentials
             </h2>
 
             <div>
