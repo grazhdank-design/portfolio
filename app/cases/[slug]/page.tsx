@@ -49,15 +49,15 @@ export default async function CasePage({
 }) {
   const { slug } = await params;
   const c = getCaseBySlug(slug);
-  if (!c) return <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center text-white/30">Case not found</div>;
+  if (!c) return <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center text-white/30">Case not found</div>;
 
   const prevCase = c.prevSlug ? getCaseBySlug(c.prevSlug) : null;
   const nextCase = c.nextSlug ? getCaseBySlug(c.nextSlug) : null;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8eaf0]">
+    <div className="min-h-screen bg-[#0f0f0f] text-[#e8eaf0]">
       {/* nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 bg-[#0f0f0f]/80 backdrop-blur-sm">
         <Link
           href="/#case-studies"
           className="flex items-center gap-2 text-white/30 hover:text-white/70 transition-colors font-mono text-sm"

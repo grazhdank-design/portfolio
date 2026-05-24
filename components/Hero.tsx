@@ -75,7 +75,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="sticky top-0 z-10 bg-[#0a0a0f] min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 relative">
+    <section className="sticky top-0 z-10 bg-[#0f0f0f] min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 relative">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
       {/* subtle neutral radial */}

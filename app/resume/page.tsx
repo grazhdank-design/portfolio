@@ -49,9 +49,9 @@ const skills = [
 
 export default function ResumePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8eaf0]">
+    <div className="min-h-screen bg-[#0f0f0f] text-[#e8eaf0]">
       {/* nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-sm print:hidden">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 bg-[#0f0f0f]/80 backdrop-blur-sm print:hidden">
         <Link
           href="/"
           className="text-white/30 hover:text-white/70 transition-colors font-mono text-sm"

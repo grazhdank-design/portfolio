@@ -78,7 +78,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative z-20 bg-[#0a0a0f] py-32 px-6 rounded-t-[24px]"
+      className="relative z-20 bg-[#0f0f0f] py-32 px-6 rounded-t-[24px]"
       style={{ boxShadow: "0 -12px 60px rgba(0,0,0,0.85)" }}
     >
       <div

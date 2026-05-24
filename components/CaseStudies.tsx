@@ -224,7 +224,7 @@ export default function CaseStudies() {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section id="case-studies" className="relative z-20 bg-[#0a0a0f] py-32 px-6 border-t border-white/5">
+    <section id="case-studies" className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <div
           ref={ref}

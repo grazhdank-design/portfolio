@@ -47,7 +47,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="relative z-20 bg-[#0a0a0f] py-32 px-6 border-t border-white/5">
+    <section id="contact" className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div
         ref={ref}
         className={`max-w-4xl mx-auto transition-all duration-700 ${
