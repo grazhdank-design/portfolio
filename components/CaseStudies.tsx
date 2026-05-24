@@ -96,19 +96,23 @@ const cases: Case[] = [
   },
 ];
 
-function CaseCard({ c, index }: { c: Case; index: number }) {
-  const [open, setOpen] = useState(false);
+function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
+      { threshold }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
+  return { ref, visible };
+}
+
+function CaseCard({ c, index }: { c: Case; index: number }) {
+  const [open, setOpen] = useState(false);
+  const { ref, visible } = useScrollReveal(0.08);
 
   return (
     <div
@@ -116,61 +120,65 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
       className={`transition-all duration-700 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
-      style={{ transitionDelay: `${index * 120}ms` }}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
       <div
-        className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+        className={`rounded-2xl border transition-all duration-300 overflow-hidden hover:scale-[1.015] ${
           open
-            ? "border-indigo-500/40 bg-white/[0.04]"
+            ? "border-indigo-500/30 bg-white/[0.04]"
             : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.03]"
         }`}
+        style={{ transformOrigin: "center" }}
       >
-        {/* card header — always visible */}
         <button
           onClick={() => setOpen(!open)}
-          className="w-full text-left p-6 md:p-8"
+          className="w-full text-left p-7 md:p-10"
         >
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 mb-6">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-4">
                 <span
-                  className={`text-xs font-mono px-2 py-0.5 rounded-full bg-gradient-to-r ${c.accentFrom} ${c.accentTo} text-white`}
+                  className={`text-xs font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r ${c.accentFrom} ${c.accentTo} text-white`}
                 >
                   {c.company}
                 </span>
-                <span className="text-xs text-[#3a3d52] font-mono">{c.tag}</span>
+                <span className="text-xs text-[#2e3145] font-mono">{c.tag}</span>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{c.title}</h3>
-              <p className="text-[#5a5e72] text-sm">{c.subtitle}</p>
+              <h3
+                className="font-bold text-white leading-tight mb-2"
+                style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
+              >
+                {c.title}
+              </h3>
+              <p className="text-[#4a4e62] text-sm">{c.subtitle}</p>
             </div>
             <div
-              className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[#5a5e72] shrink-0 transition-transform duration-300 ${
-                open ? "rotate-45" : ""
+              className={`w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#4a4e62] shrink-0 transition-all duration-300 ${
+                open ? "rotate-45 border-indigo-500/40 text-indigo-400" : ""
               }`}
             >
               +
             </div>
           </div>
 
-          {/* metrics always visible */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+          {/* metrics — subtle */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {c.metrics.map((m) => (
-              <div key={m.label} className="p-3 rounded-lg bg-white/[0.03] border border-white/5">
+              <div key={m.label} className="py-3 border-t border-white/5">
                 <div
-                  className={`text-xl font-bold bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
+                  className={`text-lg font-semibold bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
                 >
                   {m.value}
                 </div>
-                <div className="text-xs text-[#5a5e72] font-mono mt-0.5">{m.label}</div>
+                <div className="text-[10px] text-[#3a3d52] font-mono mt-0.5 uppercase tracking-wider">{m.label}</div>
               </div>
             ))}
           </div>
         </button>
 
-        {/* expanded content */}
         {open && (
-          <div className="px-6 md:px-8 pb-8 border-t border-white/5">
-            <div className="pt-6 grid md:grid-cols-2 gap-6">
+          <div className="px-7 md:px-10 pb-10 border-t border-white/5">
+            <div className="pt-8 grid md:grid-cols-2 gap-8">
               {[
                 { label: "Problem", body: c.problem },
                 { label: "Signal", body: c.signal },
@@ -179,23 +187,22 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
               ].map((block) => (
                 <div key={block.label}>
                   <div
-                    className={`text-xs font-mono tracking-widest uppercase mb-2 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
+                    className={`text-[10px] font-mono tracking-widest uppercase mb-3 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
                   >
                     {block.label}
                   </div>
-                  <p className="text-[#8b8fa8] text-sm leading-relaxed">{block.body}</p>
+                  <p className="text-[#7a7e94] text-sm leading-relaxed">{block.body}</p>
                 </div>
               ))}
             </div>
 
-            {/* lesson */}
-            <div className="mt-6 p-4 rounded-xl border border-white/5 bg-white/[0.02]">
+            <div className="mt-8 p-5 rounded-xl border border-white/5 bg-white/[0.02]">
               <div
-                className={`text-xs font-mono tracking-widest uppercase mb-2 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
+                className={`text-[10px] font-mono tracking-widest uppercase mb-3 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
               >
                 Lesson
               </div>
-              <p className="text-[#a0a4b8] text-sm leading-relaxed italic">&ldquo;{c.lesson}&rdquo;</p>
+              <p className="text-[#8b8fa8] text-sm leading-relaxed italic">&ldquo;{c.lesson}&rdquo;</p>
             </div>
           </div>
         )}
@@ -205,45 +212,38 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
 }
 
 export default function CaseStudies() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="case-studies" className="py-24 px-6 border-t border-white/5">
+    <section id="case-studies" className="py-32 px-6 border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <div
           ref={ref}
-          className={`transition-all duration-700 mb-12 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`transition-all duration-700 mb-16 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-px bg-indigo-500" />
             <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">
               Case Studies
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          <h2
+            className="font-bold mb-4"
+            style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+          >
             Products shipped,{" "}
             <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
               lessons learned
             </span>
           </h2>
-          <p className="text-[#5a5e72] text-sm font-mono">
+          <p className="text-[#3a3d52] text-sm font-mono">
             Click any card to expand the full case.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {cases.map((c, i) => (
             <CaseCard key={c.id} c={c} index={i} />
           ))}

@@ -1,9 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const NAME = "Kirill".split("");
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -19,14 +26,14 @@ export default function Hero() {
     window.addEventListener("resize", resize);
 
     const particles: { x: number; y: number; vx: number; vy: number; r: number; a: number }[] = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 50; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 1.5 + 0.5,
-        a: Math.random() * 0.5 + 0.1,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.2 + 0.4,
+        a: Math.random() * 0.35 + 0.05,
       });
     }
 
@@ -43,15 +50,14 @@ export default function Hero() {
         ctx.fillStyle = `rgba(99, 102, 241, ${p.a})`;
         ctx.fill();
       });
-
       particles.forEach((a, i) => {
         particles.slice(i + 1).forEach((b) => {
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 100) {
+          if (d < 120) {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 * (1 - d / 100)})`;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.06 * (1 - d / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -68,16 +74,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* animated background */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-
-      {/* radial gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08)_0%,transparent_70%)]" />
-
-      {/* grid lines */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(99,102,241,0.06)_0%,transparent_70%)]" />
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)",
@@ -85,37 +86,65 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-400 text-xs font-mono tracking-widest mb-8 uppercase">
+      <div className="relative z-10 text-center w-full max-w-6xl mx-auto">
+        {/* badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-400 text-xs font-mono tracking-widest mb-12 uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
           Available for new projects
         </div>
 
-        <h1 className="text-7xl md:text-9xl font-bold tracking-tight mb-4">
-          <span className="bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">
-            Kirill
-          </span>
+        {/* massive name */}
+        <h1
+          className="font-bold tracking-tight leading-none mb-8 flex justify-center"
+          style={{ fontSize: "clamp(80px, 18vw, 260px)" }}
+          aria-label="Kirill"
+        >
+          {NAME.map((letter, i) => (
+            <span
+              key={i}
+              className="inline-block bg-gradient-to-br from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent"
+              style={
+                mounted
+                  ? {
+                      animation: `letterReveal 0.7s cubic-bezier(0.16,1,0.3,1) both`,
+                      animationDelay: `${i * 55}ms`,
+                    }
+                  : { opacity: 0 }
+              }
+            >
+              {letter}
+            </span>
+          ))}
         </h1>
 
-        <p className="text-lg md:text-xl font-mono text-indigo-400/80 tracking-widest mb-6 uppercase">
+        {/* title */}
+        <p
+          className="font-mono text-indigo-400/70 tracking-[0.3em] uppercase mb-6"
+          style={{ fontSize: "clamp(12px, 1.4vw, 16px)" }}
+        >
           Head of Product · Fintech & Crypto
         </p>
 
-        <p className="text-[#8b8fa8] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
+        {/* tagline */}
+        <p
+          className="text-[#6b7082] max-w-xl mx-auto leading-relaxed mb-14"
+          style={{ fontSize: "clamp(15px, 1.6vw, 18px)" }}
+        >
           9+ years building crypto &amp; fintech products.{" "}
           <span className="text-indigo-300">From zero to revenue</span> — fast.
         </p>
 
+        {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#case-studies"
-            className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-medium hover:from-indigo-500 hover:to-violet-500 transition-all duration-200 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
+            className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-medium hover:from-indigo-500 hover:to-violet-500 transition-all duration-300 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35"
           >
             View Case Studies
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 rounded-full border border-white/10 text-[#a0a4b8] hover:border-indigo-500/50 hover:text-white transition-all duration-200"
+            className="px-8 py-3 rounded-full border border-white/10 text-[#8b8fa8] hover:border-indigo-500/40 hover:text-white transition-all duration-300"
           >
             Get in Touch
           </a>
@@ -123,9 +152,9 @@ export default function Hero() {
       </div>
 
       {/* scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#3a3d52]">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#2a2d3e]">
         <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-indigo-500/50 to-transparent animate-pulse" />
+        <div className="w-px h-12 bg-gradient-to-b from-indigo-500/40 to-transparent animate-pulse" />
       </div>
     </section>
   );

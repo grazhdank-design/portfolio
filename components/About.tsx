@@ -2,35 +2,98 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function About() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+interface StatItem {
+  end: number;
+  decimals: number;
+  prefix: string;
+  suffix: string;
+  label: string;
+}
+
+const stats: StatItem[] = [
+  { end: 1, decimals: 0, prefix: "", suffix: "M+", label: "MAU scaled" },
+  { end: 300, decimals: 0, prefix: "", suffix: "%", label: "Revenue growth YoY" },
+  { end: 4.2, decimals: 1, prefix: "$", suffix: "M+", label: "Monthly fiat ramp volume" },
+  { end: 90, decimals: 0, prefix: "", suffix: "+", label: "People hired" },
+];
+
+function CountUp({ end, decimals, prefix, suffix }: Omit<StatItem, "label">) {
+  const [val, setVal] = useState(0);
+  const [started, setStarted] = useState(false);
+  const spanRef = useRef<HTMLSpanElement>(null);
+  const reducedRef = useRef(false);
 
   useEffect(() => {
+    reducedRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.2 }
+      ([e]) => { if (e.isIntersecting) setStarted(true); },
+      { threshold: 0.5 }
     );
-    if (ref.current) obs.observe(ref.current);
+    if (spanRef.current) obs.observe(spanRef.current);
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!started) return;
+    if (reducedRef.current) { setVal(end); return; }
+    const duration = 1600;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - t0) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const cur = eased * end;
+      setVal(decimals > 0 ? Math.round(cur * 10) / 10 : Math.round(cur));
+      if (t < 1) requestAnimationFrame(tick);
+      else setVal(end);
+    };
+    requestAnimationFrame(tick);
+  }, [started, end, decimals]);
+
+  const display = decimals > 0 ? val.toFixed(decimals) : String(val);
+
   return (
-    <section id="about" className="py-24 px-6">
+    <span ref={spanRef}>
+      {prefix}{display}{suffix}
+    </span>
+  );
+}
+
+function useScrollReveal(threshold = 0.2) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
+export default function About() {
+  const { ref, visible } = useScrollReveal(0.15);
+
+  return (
+    <section id="about" className="py-32 px-6">
       <div
         ref={ref}
         className={`max-w-4xl mx-auto transition-all duration-700 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <div className="flex items-center gap-3 mb-12">
+        <div className="flex items-center gap-3 mb-16">
           <div className="w-8 h-px bg-indigo-500" />
           <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">About</span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h2
+              className="font-bold leading-tight mb-0"
+              style={{ fontSize: "clamp(32px, 4vw, 52px)" }}
+            >
               Building products{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
                 people actually use
@@ -38,7 +101,7 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="space-y-4 text-[#8b8fa8] leading-relaxed text-base">
+          <div className="space-y-5 text-[#7a7e94] leading-relaxed" style={{ fontSize: "clamp(14px, 1.3vw, 16px)" }}>
             <p>
               I&apos;m a Head of Product with 9+ years in crypto and fintech, 5 years in executive
               roles. I&apos;ve launched 5 MVPs, scaled products to 1M+ MAU, grown revenue up to 300%
@@ -60,22 +123,24 @@ export default function About() {
           </div>
         </div>
 
-        {/* stat strip */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: "1M+", label: "MAU scaled" },
-            { value: "300%", label: "Revenue growth YoY" },
-            { value: "$4.2M+", label: "Monthly fiat ramp volume" },
-            { value: "90+", label: "People hired" },
-          ].map((s) => (
+        {/* stat list — large numbers left, label right */}
+        <div className="mt-20 border-t border-white/5 divide-y divide-white/5">
+          {stats.map((s, i) => (
             <div
               key={s.label}
-              className="p-4 rounded-xl border border-white/5 bg-white/[0.02] text-center"
+              className="flex items-baseline justify-between py-5 gap-8"
+              style={{
+                animation: visible ? `fadeUp 0.5s ease-out both` : undefined,
+                animationDelay: visible ? `${200 + i * 80}ms` : undefined,
+              }}
             >
-              <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                {s.value}
-              </div>
-              <div className="text-xs text-[#5a5e72] mt-1 font-mono">{s.label}</div>
+              <span
+                className="font-bold tabular-nums bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent shrink-0"
+                style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+              >
+                <CountUp end={s.end} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+              </span>
+              <span className="text-[#4a4e62] font-mono text-sm text-right">{s.label}</span>
             </div>
           ))}
         </div>

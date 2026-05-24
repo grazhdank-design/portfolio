@@ -1,3 +1,4 @@
+import Cursor from "@/components/Cursor";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import HowBuilt from "@/components/HowBuilt";
@@ -7,13 +8,16 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex flex-col">
-      <Hero />
-      <About />
-      <HowBuilt />
-      <CaseStudies />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <Cursor />
+      <main className="flex flex-col">
+        <Hero />
+        <About />
+        <HowBuilt />
+        <CaseStudies />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   );
 }
