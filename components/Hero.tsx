@@ -119,10 +119,10 @@ export default function Hero() {
 
         {/* title */}
         <p
-          className="font-mono text-indigo-400/70 tracking-[0.3em] uppercase mb-6"
-          style={{ fontSize: "clamp(12px, 1.4vw, 16px)" }}
+          className="font-mono text-indigo-400/70 tracking-[0.2em] uppercase mb-6"
+          style={{ fontSize: "clamp(10px, 1.2vw, 14px)" }}
         >
-          Head of Product · Fintech & Crypto
+          Head of Product / Product Owner · Fintech & Crypto
         </p>
 
         {/* tagline */}

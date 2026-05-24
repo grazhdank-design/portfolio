@@ -23,13 +23,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* hide default cursor on pointer-fine devices (custom cursor active) */
-@media (pointer: fine) and (hover: hover) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
-
 /* letter reveal animation */
 @keyframes letterReveal {
   from {
@@ -42,7 +35,7 @@ html {
   }
 }
 
-/* count-up number reveal */
+/* section fade up */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -52,6 +45,22 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* case study title glitch */
+@keyframes glitch {
+  0%   { transform: translateX(0) skewX(0deg); }
+  15%  { transform: translateX(-4px) skewX(-1.5deg); }
+  30%  { transform: translateX(4px) skewX(1deg); }
+  45%  { transform: translateX(-3px) skewX(0deg); }
+  60%  { transform: translateX(3px) skewX(0.5deg); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0) skewX(0deg); }
+}
+
+.glitch-anim {
+  animation: glitch 0.42s ease-in-out;
+  display: inline-block;
 }
 
 /* respect reduced motion */

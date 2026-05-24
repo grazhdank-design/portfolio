@@ -33,6 +33,18 @@ const stack = [
     color: "from-indigo-400 to-violet-500",
     icon: "✦",
   },
+  {
+    name: "GitHub",
+    desc: "Version control & hosting",
+    color: "from-gray-300 to-gray-500",
+    icon: "◉",
+  },
+  {
+    name: "Terminal",
+    desc: "CLI-first development",
+    color: "from-green-400 to-emerald-500",
+    icon: "$_",
+  },
 ];
 
 export default function HowBuilt() {
