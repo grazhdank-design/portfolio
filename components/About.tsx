@@ -58,22 +58,22 @@ function CountUp({ end, decimals, prefix, suffix }: Omit<StatItem, "label">) {
   );
 }
 
-function useScrollReveal(threshold = 0.2) {
+function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold }
+      { threshold: 0.04, rootMargin: "0px 0px -40px 0px" }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, [threshold]);
+  }, []);
   return { ref, visible };
 }
 
 export default function About() {
-  const { ref, visible } = useScrollReveal(0.15);
+  const { ref, visible } = useScrollReveal();
 
   return (
     <section

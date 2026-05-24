@@ -40,7 +40,7 @@ export default function Contact() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
+      { threshold: 0.04, rootMargin: "0px 0px -40px 0px" }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();

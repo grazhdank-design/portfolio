@@ -17,6 +17,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-4">
+          <a href="/resume/" className="hover:text-indigo-400 transition-colors">Resume</a>
           <a
             href="https://linkedin.com/in/kirill-grazhdan"
             target="_blank"
