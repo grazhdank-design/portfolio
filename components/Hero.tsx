@@ -148,7 +148,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="sticky top-0 z-10 bg-[#0f0f0f] min-h-screen flex flex-col items-center justify-center px-6 relative" style={{ overflow: "visible" }}>
+    <section id="hero" className="sticky top-0 z-10 bg-[#0f0f0f] min-h-screen flex flex-col items-center justify-center px-6 relative" style={{ overflow: "visible" }}>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <canvas ref={noiseCanvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1, opacity: 0.018, mixBlendMode: "screen" }} />
 

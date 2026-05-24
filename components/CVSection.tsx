@@ -76,7 +76,7 @@ export default function CVSection() {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
+    <section id="experience" className="relative z-20 bg-[#0f0f0f] py-32 px-6 border-t border-white/5">
       <div
         ref={ref}
         className={`max-w-6xl mx-auto transition-all duration-700 ${
