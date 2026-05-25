@@ -24,7 +24,7 @@ const stack = [
   {
     name: "Vercel",
     desc: "Hosting & deployment",
-    color: "from-black to-gray-700",
+    color: "from-white to-gray-300",
     icon: "▲",
   },
   {
