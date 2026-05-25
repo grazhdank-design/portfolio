@@ -169,7 +169,7 @@ function CaseItem({ index }: { index: number }) {
             >
               {m.value}
             </div>
-            <div className="text-[10px] text-[#2e3145] font-mono mt-1 uppercase tracking-wider">{m.label}</div>
+            <div className="text-[10px] text-white/35 font-mono mt-1 uppercase tracking-wider">{m.label}</div>
           </div>
         ))}
       </div>

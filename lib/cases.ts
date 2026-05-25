@@ -97,7 +97,7 @@ export const cases: CaseMeta[] = [
       { value: "$4.2M+", label: "Monthly volume" },
       { value: "3mo", label: "ROI achieved" },
       { value: "34%", label: "Users using P2P already" },
-      { value: "0", label: "KYC licenses needed" },
+      { value: "LTV/CAC 8x", label: "Paid channel efficiency" },
     ],
     problem:
       "Single revenue stream while all top competitors offered fiat on/off-ramp. Without fiat access, we were losing users at the top of the funnel.",
