@@ -106,7 +106,7 @@ export const cases: CaseMeta[] = [
     solution:
       "Integrated Mercuryo as a white-label widget. No KYC, no licenses, launched in weeks.",
     result:
-      "$4.2M+ monthly volume. ROI achieved in 3 months.",
+      "$4.2M+ monthly volume. Full initiative ROI (team + dev costs) in 3 months. LTV/CAC on paid channels: 8x.",
     lesson:
       "Speed of validation beats control over UX at early stage.",
 

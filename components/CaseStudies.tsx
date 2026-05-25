@@ -192,19 +192,19 @@ function CaseItem({ index }: { index: number }) {
               ["Result", c.result],
             ] as [string, string][]).map(([label, body]) => (
               <div key={label}>
-                <div className={`text-[10px] font-mono tracking-widest uppercase mb-2.5 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}>
+                <div className="text-[10px] font-mono tracking-widest uppercase mb-2.5 text-indigo-400">
                   {label}
                 </div>
-                <p className="text-[#7a7e94] text-sm leading-relaxed">{body}</p>
+                <p className="text-white/65 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
 
           <div className="p-5 rounded-xl border border-white/5 bg-white/[0.02]">
-            <div className={`text-[10px] font-mono tracking-widest uppercase mb-2 bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}>
+            <div className="text-[10px] font-mono tracking-widest uppercase mb-2 text-indigo-400">
               Lesson
             </div>
-            <p className="text-[#8b8fa8] text-sm leading-relaxed italic">&ldquo;{c.lesson}&rdquo;</p>
+            <p className="text-white/65 text-sm leading-relaxed italic">&ldquo;{c.lesson}&rdquo;</p>
           </div>
 
           <Link

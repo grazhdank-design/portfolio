@@ -24,7 +24,7 @@ function Paragraphs({ text }: { text: string }) {
   return (
     <>
       {text.split("\n\n").map((p, i) => (
-        <p key={i} className="text-[#7a7e94] leading-relaxed mb-4 last:mb-0" style={{ fontSize: "clamp(14px, 1.3vw, 16px)" }}>
+        <p key={i} className="text-white/65 leading-relaxed mb-4 last:mb-0" style={{ fontSize: "clamp(14px, 1.3vw, 16px)" }}>
           {p}
         </p>
       ))}
@@ -124,9 +124,7 @@ export default async function CasePage({
               <div key={key}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className={`w-6 h-px bg-gradient-to-r ${c.accentFrom} ${c.accentTo}`} />
-                  <span
-                    className={`text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
-                  >
+                  <span className="text-xs font-mono tracking-widest uppercase text-indigo-400">
                     {label}
                   </span>
                 </div>
@@ -139,9 +137,7 @@ export default async function CasePage({
           <div className="p-7 rounded-2xl border border-white/5 bg-white/[0.02]">
             <div className="flex items-center gap-3 mb-6">
               <div className={`w-6 h-px bg-gradient-to-r ${c.accentFrom} ${c.accentTo}`} />
-              <span
-                className={`text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent`}
-              >
+              <span className="text-xs font-mono tracking-widest uppercase text-indigo-400">
                 Key Takeaways
               </span>
             </div>
@@ -151,7 +147,7 @@ export default async function CasePage({
                   <span className={`mt-1 text-xs bg-gradient-to-r ${c.accentFrom} ${c.accentTo} bg-clip-text text-transparent font-bold shrink-0`}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-[#8b8fa8] text-sm leading-relaxed">{t}</span>
+                  <span className="text-white/65 text-sm leading-relaxed">{t}</span>
                 </li>
               ))}
             </ul>

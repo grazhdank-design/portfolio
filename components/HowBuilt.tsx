@@ -22,10 +22,10 @@ const stack = [
     icon: "◈",
   },
   {
-    name: "Netlify",
+    name: "Vercel",
     desc: "Hosting & deployment",
-    color: "from-teal-400 to-emerald-400",
-    icon: "◆",
+    color: "from-black to-gray-700",
+    icon: "▲",
   },
   {
     name: "Claude",

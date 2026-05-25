@@ -12,9 +12,10 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { end: 1, decimals: 0, prefix: "", suffix: "M+", label: "MAU scaled" },
-  { end: 300, decimals: 0, prefix: "", suffix: "%", label: "Revenue growth YoY" },
+  { end: 300, decimals: 0, prefix: "", suffix: "%", label: "Revenue growth YoY (SimpleSwap)" },
   { end: 4.2, decimals: 1, prefix: "$", suffix: "M+", label: "Monthly fiat ramp volume" },
-  { end: 90, decimals: 0, prefix: "", suffix: "+", label: "People hired" },
+  { end: 90, decimals: 0, prefix: "", suffix: "+", label: "People hired across 9 teams" },
+  { end: 5, decimals: 0, prefix: "", suffix: "", label: "Eng teams managed simultaneously" },
 ];
 
 function CountUp({ end, decimals, prefix, suffix }: Omit<StatItem, "label">) {
@@ -106,7 +107,7 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="space-y-5 text-[#7a7e94] leading-relaxed" style={{ fontSize: "clamp(14px, 1.3vw, 16px)" }}>
+          <div className="space-y-5 text-white/60 leading-relaxed" style={{ fontSize: "clamp(14px, 1.3vw, 16px)" }}>
             <p>
               I&apos;m a Head of Product with 9+ years in crypto and fintech, 5 years in executive
               roles. I&apos;ve launched 5 MVPs, scaled products to 1M+ MAU, grown revenue up to 300%

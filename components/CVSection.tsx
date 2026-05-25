@@ -109,7 +109,7 @@ export default function CVSection() {
                   >
                     {job.role}
                   </h3>
-                  <p className="text-white/55 leading-relaxed text-sm">
+                  <p className="text-white/60 leading-relaxed text-sm">
                     {job.desc}
                   </p>
                 </div>
